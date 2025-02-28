@@ -1,3 +1,30 @@
+# Define a data pipeline using Apache Airflow DAG that includes the specified steps:
+
+# Task 1: Read Data
+
+# Use Pandas to read data from an online NYC dataset.
+
+# Task 2: Data Quality Check
+
+# Utilize Great Expectations (GX) to ensure data quality.
+
+# Task 3.1: Data Cleaning (Conditional)
+
+# If the data quality check fails, perform data cleaning using Pandas.
+
+# Task 3.2: Model Training (Conditional)
+
+# If the data quality check passes, train a simple ML model using the prepared data.
+
+# Task 4: Model Deployment
+
+# Deploy the trained model.
+
+# Task 5: Model Monitoring
+
+# Monitor the deployed model's performance.
+
+
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
