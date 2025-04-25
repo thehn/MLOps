@@ -23,3 +23,19 @@ for MODULE in "${SOURCE[@]}"; do
 done
 
 echo "Deployment completed successfully."
+
+# Check if the shell is being executed from a virtual environment
+# Function to check if a virtual environment is activated
+check_virtualenv() {
+    if [ -z "$VIRTUAL_ENV" ]; then
+        echo "No virtual environment is activated. You must activate the Airflow virtual environment first."
+    else
+        echo "Virtual environment is activated: $VIRTUAL_ENV"
+		echo "Installing dependencies..."
+		# Install dependencies
+		pip install -r requirements.txt
+    fi
+}
+
+# Call the function
+check_virtualenv

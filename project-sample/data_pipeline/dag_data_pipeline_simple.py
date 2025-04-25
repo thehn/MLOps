@@ -33,7 +33,7 @@ with DAG(
     "data_engineering_pipeline",
     default_args=default_args,
     params=params,
-    tags=["data_pipeline"],
+    tags=["data_pipeline", "data_engineering", "etl", "ingestion"],
     description="Data engineering pipeline DAG",
     schedule_interval=timedelta(days=1),
     start_date=datetime(2025, 4, 1),
