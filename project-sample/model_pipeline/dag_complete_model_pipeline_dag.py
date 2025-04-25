@@ -1,3 +1,21 @@
+# This Airflow DAG represents a complete MLOps pipeline that integrates MLflow for experiment tracking and model registry. Here's a breakdown of what it does:
+
+# Data Extraction: Generates synthetic customer churn data
+# Data Preprocessing: Cleans and normalizes the data
+# Feature Engineering: Creates additional features and encodes categorical variables
+# Train/Test Split: Divides data for model training and evaluation
+# Model Training: Trains a RandomForest classifier and logs it to MLflow
+# Model Evaluation: Calculates metrics and logs them to MLflow
+# Model Promotion: Transitions the model to Production stage in MLflow if it meets quality thresholds
+# Model Serving Setup: Prepares a Flask API for model deployment
+# Monitoring Setup: Creates a script for tracking model performance
+
+# To use this DAG:
+
+# Make sure you have Airflow and MLflow servers running
+# Update MLFLOW_TRACKING_URI with your MLflow server address
+# Place this file in your Airflow DAGs folder
+
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
