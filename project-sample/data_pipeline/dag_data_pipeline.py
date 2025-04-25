@@ -42,30 +42,56 @@ with DAG(
 
     @task
     def task_ingest_data(**context):
+        """
+        Ingest raw data from a CSV file into a golden table in the SQLite database.
+        Args:
+            context (dict): Airflow context containing parameters.
+        """
+        # Get parameters from the context
         raw_csv_file = context["dag_run"].conf.get("raw_csv_file")
         golden_database = context["dag_run"].conf.get("golden_database")
         table_name = context["dag_run"].conf.get("table_name", "data_table")
-
-        ingest_data(raw_csv_file, golden_database, table_name)
+        # Ingest data
+        ingest_data(
+            raw_csv_file,
+            golden_database,
+            table_name,
+        )
 
     @task
     def task_validate_table(**context):
+        """
+        Validate if the table in the SQLite database contains data.
+        Args:
+            context (dict): Airflow context containing parameters.
+        """
+        # Get parameters from the context
         golden_database = context["dag_run"].conf.get("golden_database")
-        table_name = context["dag_run"].conf.get("table_name", "data_table")
-
-        validate_table(golden_database, table_name)
+        table_name = context["dag_run"].conf.get("golden_table_name", "data_table")
+        # Validate the table
+        validate_table(
+            golden_database,
+            table_name,
+        )
 
     @task
     def task_engineer_features(**context):
+        """
+        Perform feature engineering on data in the SQLite database.
+        Args:
+            context (dict): Airflow context containing parameters.
+        """
+        # Get parameters from the context
         golden_database = context["dag_run"].conf.get("golden_database")
         feature_store_database = context["dag_run"].conf.get("feature_store_database")
-        golden_table_name = context["dag_run"].conf.get(
-            "golden_table_name", "data_table"
-        )
         feature_store_table_name = context["dag_run"].conf.get(
             "feature_store_table_name", "features_table"
         )
+        golden_table_name = context["dag_run"].conf.get(
+            "golden_table_name", "data_table"
+        )
 
+        # Perform feature engineering
         engineering_features(
             golden_database,
             golden_table_name,

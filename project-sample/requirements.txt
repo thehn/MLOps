@@ -1,0 +1,5 @@
+scikit-learn
+numpy
+pandas
+airflow-provider-mlflow==1.1.0
+mlflow-skinny==2.3.2
